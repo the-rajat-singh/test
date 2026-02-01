@@ -33,5 +33,5 @@ jobs:
           application_name: demo-app
           environment_name: demo-env
           version_label: v-${{ github.run_id }}
-          region: ${{ env.region }}
+          region: ${{ env.REGION }}
           deployment_package: deployment-package.zip
