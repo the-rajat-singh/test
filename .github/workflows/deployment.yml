@@ -1,37 +1,12 @@
-name: Deployment Workflow
-env:
- REGION: ap-south-1
+name: testing
+
 on:
-  push:
-    branches: ["main"]
+  push
+    branches: ["main"] 
+
 jobs:
-  build-and-deploy:
-    runs-on: ubuntu-latest
+  test:
+    runs_on: ubuntu-latest
     steps:
-      - name: Checkout code
-        uses: actions/checkout@v3
-      
-      - name: setup Node.js
-        uses: actions/setup-node@v3
-        with:
-          version: "18"
-
-      - name: Install dependencies
-        run: npm install 
-
-      - name: run tests
-        run: npm test
-
-      - name: zip files
-        run: zip -r deployment-package.zip .
-
-      - name: Deploy to EB
-        uses: einaregilsson/beanstalk-deploy@v22
-        with:
-          aws_access_key: ${{ secrets.AWS_ACCESS_KEY_ID }}
-          aws_secret_key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
-          application_name: demo-app
-          environment_name: demo-env
-          version_label: v-${{ github.run_id }}
-          region: ${{ env.REGION }}
-          deployment_package: deployment-package.zip
+      -name: print helloo
+       run: echo "hello world"
