@@ -62,7 +62,7 @@ app.post("/notes", (req, res) => {
  */
 app.get("/", (req, res) => {
   res.send(`
-    <h2> Simple Notes App</h2>
+    <h2> App</h2>
     <form method="POST" action="/add-note">
       <input name="note" placeholder="Write your note" required />
       <button>Add</button>
