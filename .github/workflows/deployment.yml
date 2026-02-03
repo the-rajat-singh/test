@@ -6,6 +6,8 @@ env:
 on:
   push:
     branches: ["main"]
+  workflow_dispatch:
+    
 jobs:
   build-and-deploy:
     runs-on: ubuntu-latest
@@ -21,6 +23,8 @@ jobs:
         run: npm install
       - name: run tests
         run: npm test
+      - name: zip files
+        run: zip -r deploy.zip .
       - name: Deploy to EB
         uses: einaregilsson/beanstalk-deploy@v22
         with:
@@ -30,3 +34,4 @@ jobs:
           environment_name: ${{ env.ENV_NAME}}
           version_label: v-${{ github.run_number }}
           region: ${{ env.REGION }}
+          deployment_package: deploy.zip
